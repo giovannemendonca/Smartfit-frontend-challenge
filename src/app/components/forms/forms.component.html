@@ -1,0 +1,36 @@
+<link rel="stylesheet" href="forms.component.scss">
+<form class="form-group" [formGroup]="formGroup">
+
+  <div class="form-icon"><img src="/assets/images/png/icon-hour.png" alt="imagem de um relógio">Horário</div>
+  <h3>Qual periodo quer treinar?</h3>
+
+  <div class="radio-wrapper">
+    <input type="radio" id="morning" value="morning" name="hour" formControlName="hour">
+    <label for="morning">Manhã</label>
+    <span>06:00 ás 12h</span>
+  </div>
+  <div class="radio-wrapper">
+    <input type="radio" id="afeternoon" value="afeternoon" name="hour" formControlName="hour">
+    <label for="afeternoon">Tarde</label>
+    <span>12:01 ás 18h</span>
+  </div>
+  <div class="radio-wrapper">
+    <input type="radio" id="night" name="hour" value="night" formControlName="hour">
+    <label for="night">Noite</label>
+    <span>18:01 ás 23h</span>
+  </div>
+
+  <div class="checkbox-wrapper">
+    <div class="checkbox">
+      <input type="checkbox" name="show-closed" id="show-closed" formControlName="showClosed">
+      <label for="show-closed">Exibir unidades fechadas</label>
+    </div>
+    <span>Resultados encontrados: {{ result.length }}</span>
+  </div>
+
+  <div class="btn-wrapper">
+    <button class="btn btn-primary" (click)="onSubmit()">Encontrar unidade</button>
+    <button class="btn btn-secondary" (click)="onClear()">Limpar</button>
+  </div>
+
+</form>

@@ -1,9 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {GetUnitsService} from "../../services/get-units.service";
 import {Location} from "../../types/location.interface";
 import {FilterUnitsService} from "../../services/filter-units.service";
-import * as timers from "node:timers";
 
 
 @Component({
@@ -17,6 +16,8 @@ import * as timers from "node:timers";
 })
 
 export class FormsComponent implements OnInit {
+
+  @Output() submitEnvent = new EventEmitter();
 
   results: Location[] = [];
   filteredResult: Location[] = [];
@@ -45,6 +46,8 @@ export class FormsComponent implements OnInit {
     let {showClosed, hour} = this.formGroup.value;
     this.filteredResult = this.filterUnitsService.filter(this.results, showClosed, hour)
     this.unitService.setFilteredUnits(this.filteredResult)
+
+    this.submitEnvent.emit()
   }
 
   onClear(): void {
